@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1F7A8C;
+  --color-primary-dark: #165663;
+  --color-secondary: #0A192F;
+  --color-accent: #4FD1C5;
+  --color-medical-bg: #FDFDFD;
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+}
+
+@layer base {
+  body {
+    @apply bg-medical-bg text-secondary font-sans antialiased selection:bg-primary/20 selection:text-primary;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+
+  .serif {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.04)];
+  }
+
+  .glass-card-dark {
+    @apply bg-secondary/95 backdrop-blur-xl border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.3)];
+  }
+
+  .premium-shadow {
+    @apply shadow-[0_32px_64px_-16px_rgba(31,122,140,0.08)];
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-primary via-primary-dark to-primary;
+  }
+
+  .btn-primary {
+    @apply relative overflow-hidden bg-primary text-white px-8 py-4 rounded-2xl font-bold transition-all duration-500 hover:bg-primary-dark hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-0.5 active:scale-[0.98] flex items-center justify-center gap-2;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-secondary border border-gray-100 px-8 py-4 rounded-2xl font-bold transition-all duration-500 hover:bg-gray-50 hover:border-primary/20 hover:-translate-y-0.5 active:scale-[0.98] flex items-center justify-center gap-2 shadow-sm;
+  }
+
+  .section-padding {
+    @apply py-24 md:py-40 px-6;
+  }
+
+  .dot-matrix {
+    background-image: radial-gradient(circle at 1px 1px, rgba(31, 122, 140, 0.05) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 60s linear infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.mask-fade-bottom {
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
