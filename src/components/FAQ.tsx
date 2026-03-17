@@ -42,7 +42,7 @@ const FAQ = () => {
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
+                        transition={{ duration: 0.5 }}
                     >
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] font-bold uppercase tracking-[0.3em] mb-8">
                             <HelpCircle size={14} />
@@ -116,7 +116,7 @@ const FAQ = () => {
                                                 initial={{ height: 0, opacity: 0 }}
                                                 animate={{ height: 'auto', opacity: 1 }}
                                                 exit={{ height: 0, opacity: 0 }}
-                                                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                                transition={{ duration: 0.25, ease: 'easeInOut' }}
                                             >
                                                 <div className="px-6 pb-6 sm:px-8 sm:pb-8 pt-0">
                                                     <p className="text-secondary/60 leading-relaxed font-light text-[15px] sm:text-base">

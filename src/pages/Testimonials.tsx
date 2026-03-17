@@ -84,7 +84,7 @@ const TestimonialsPage = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.05 }}
               className="bg-white p-12 rounded-[3rem] shadow-sm border border-gray-100 relative group hover:shadow-xl hover:shadow-primary/5 transition-all duration-500"
             >
               <Quote className="text-primary/5 absolute top-10 right-10 group-hover:scale-110 transition-transform" size={80} />

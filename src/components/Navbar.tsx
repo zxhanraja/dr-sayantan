@@ -31,7 +31,7 @@ const Navbar = () => {
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-700 px-4 sm:px-6',
         scrolled ? 'py-3 sm:py-4' : 'py-5 sm:py-8'
@@ -66,7 +66,7 @@ const Navbar = () => {
               key={link.name}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * i, duration: 0.5 }}
+              transition={{ delay: 0.05 * i, duration: 0.3 }}
             >
               <Link
                 to={link.path}

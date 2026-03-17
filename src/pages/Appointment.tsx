@@ -149,7 +149,7 @@ const AppointmentPage = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
                 className="bg-white p-12 rounded-[3.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 hover:border-primary/20 transition-all duration-500 group"
               >
                 <h4 className="text-2xl font-display font-bold text-secondary mb-6 flex items-center gap-5">

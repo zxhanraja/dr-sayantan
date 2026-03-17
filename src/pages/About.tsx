@@ -9,16 +9,16 @@ const About = () => {
       <section className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24 sm:mb-32">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             className="relative w-full max-w-xs sm:max-w-sm lg:max-w-[70%] mx-auto"
           >
             <div className="w-full rounded-[2rem] sm:rounded-[3.5rem] overflow-hidden shadow-[0_48px_96px_-16px_rgba(0,0,0,0.15)] border-[6px] sm:border-[10px] border-white bg-white relative z-10">
               <img
-                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=800&h=1000"
+                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=60&w=800&h=1000"
                 alt="Dr. Sayantan Gayen"
-                className="w-full h-auto object-cover aspect-[4/5] hover:scale-105 transition-transform duration-700"
+                className="w-full h-auto object-cover aspect-[4/5] hover:scale-105 transition-transform duration-500"
                 referrerPolicy="no-referrer"
               />
             </div>

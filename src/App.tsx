@@ -1,19 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from '@/src/components/Navbar';
 import Footer from '@/src/components/Footer';
-import Home from '@/src/pages/Home';
-import About from '@/src/pages/About';
-import Services from '@/src/pages/Services';
-import Appointment from '@/src/pages/Appointment';
-import Testimonials from '@/src/pages/Testimonials';
-import Contact from '@/src/pages/Contact';
-import Privacy from '@/src/pages/Privacy';
-import Terms from '@/src/pages/Terms';
-import Cookies from '@/src/pages/Cookies';
-import NotFound from '@/src/pages/NotFound';
-import DemoOne from '@/src/components/ui/demo';
 import { AnimatePresence, motion } from 'motion/react';
+
+// Lazy load pages for better performance
+const Home = lazy(() => import('@/src/pages/Home'));
+const About = lazy(() => import('@/src/pages/About'));
+const Services = lazy(() => import('@/src/pages/Services'));
+const Appointment = lazy(() => import('@/src/pages/Appointment'));
+const Testimonials = lazy(() => import('@/src/pages/Testimonials'));
+const Contact = lazy(() => import('@/src/pages/Contact'));
+const Privacy = lazy(() => import('@/src/pages/Privacy'));
+const Terms = lazy(() => import('@/src/pages/Terms'));
+const Cookies = lazy(() => import('@/src/pages/Cookies'));
+const NotFound = lazy(() => import('@/src/pages/NotFound'));
+const DemoOne = lazy(() => import('@/src/components/ui/demo'));
 
 // Loading Screen Component
 const LoadingScreen = () => {
@@ -26,7 +28,8 @@ const LoadingScreen = () => {
           clearInterval(interval);
           return 100;
         }
-        return prev + 1.5;
+        // Increased speed from 1.5 to 3.5 for a snappier feel
+        return prev + 3.5;
       });
     }, 20);
     return () => clearInterval(interval);
@@ -36,7 +39,7 @@ const LoadingScreen = () => {
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-0 z-[100] bg-secondary flex flex-col items-center justify-center overflow-hidden"
     >
       {/* Background Decorative Elements */}
@@ -48,7 +51,7 @@ const LoadingScreen = () => {
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
           className="mb-12"
         >
           <div className="w-24 h-24 bg-white rounded-[2rem] flex items-center justify-center text-secondary font-bold text-4xl shadow-[0_32px_64px_rgba(0,0,0,0.3)] relative overflow-hidden group">
@@ -57,21 +60,21 @@ const LoadingScreen = () => {
                 scale: [1, 1.05, 1],
               }}
               transition={{
-                duration: 3,
+                duration: 2,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
             >
               SG
             </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/0 via-primary/10 to-primary/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1500" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/0 via-primary/10 to-primary/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
           </div>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.2 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-display font-bold text-white tracking-tight mb-3">Dr. Sayantan Gayen</h2>
@@ -112,6 +115,13 @@ const LoadingScreen = () => {
   );
 };
 
+// Simple Loading Indicator for Suspense
+const PageLoader = () => (
+  <div className="min-h-[60vh] flex items-center justify-center">
+    <div className="w-10 h-10 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
+  </div>
+);
+
 // Scroll to top on route change
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -125,7 +135,8 @@ export default function App() {
   const [loading, setLoading] = React.useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1500);
+    // Reduced from 1500 to 700 for a much faster entry
+    const timer = setTimeout(() => setLoading(false), 700);
     return () => clearTimeout(timer);
   }, []);
 
@@ -139,19 +150,21 @@ export default function App() {
         <Navbar />
         <div className="flex-grow">
           <AnimatePresence mode="wait">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/appointment" element={<Appointment />} />
-              <Route path="/testimonials" element={<Testimonials />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/cookies" element={<Cookies />} />
-              <Route path="/demo" element={<DemoOne />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/appointment" element={<Appointment />} />
+                <Route path="/testimonials" element={<Testimonials />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/cookies" element={<Cookies />} />
+                <Route path="/demo" element={<DemoOne />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
           </AnimatePresence>
         </div>
         <Footer />

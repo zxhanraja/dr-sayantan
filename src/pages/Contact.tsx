@@ -91,7 +91,7 @@ const ContactPage = () => {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
             className="bg-white p-8 sm:p-16 lg:p-24 rounded-[2.5rem] sm:rounded-[4rem] shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-[80px]" />
@@ -147,7 +147,7 @@ const ContactPage = () => {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5 }}
               className="bg-secondary text-white p-8 sm:p-16 lg:p-20 rounded-[2.5rem] sm:rounded-[4rem] relative overflow-hidden shadow-2xl"
             >
               <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full -mr-80 -mt-80 blur-[120px]" />

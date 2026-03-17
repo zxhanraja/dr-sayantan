@@ -22,18 +22,19 @@ const Home = () => {
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="relative max-w-[300px] sm:max-w-none mx-auto lg:mx-0"
           >
             <div className="relative z-10 rounded-[3rem] sm:rounded-[5rem] overflow-hidden shadow-[0_48px_96px_-16px_rgba(0,0,0,0.12)] border-[12px] sm:border-[20px] border-white bg-white group">
               <img
-                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800"
+                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=60&w=1000"
                 alt="Doctor Consultation"
-                className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-1000"
+                className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700"
                 referrerPolicy="no-referrer"
+                loading="lazy"
               />
             </div>
 
@@ -53,10 +54,10 @@ const Home = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <div className="inline-block px-5 py-2 rounded-full bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-[0.3em] mb-10">
               Meet the Doctor

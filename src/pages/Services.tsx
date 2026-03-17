@@ -10,7 +10,7 @@ const services = [
     longDescription: "Managing diabetes is a team effort. I don't just give you a list of 'don'ts'; I help you find the 'dos'. From the latest glucose monitoring tech to practical meal planning that actually tastes good, we'll build a roadmap that keeps your blood sugar stable and your spirits high. Our goal? Preventing complications before they even think about starting.",
     icon: Activity,
     color: "bg-blue-50 text-blue-600",
-    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=60&w=800"
   },
   {
     title: "Hypertension Treatment",
@@ -18,7 +18,7 @@ const services = [
     longDescription: "Think of your blood pressure as the 'weather' of your cardiovascular system. When it's stormy, things get damaged. I use a mix of modern medicine, stress-busting techniques, and simple dietary tweaks to bring the sunshine back. We'll monitor your progress closely, ensuring your heart stays strong and your risk of stroke stays low.",
     icon: Heart,
     color: "bg-red-50 text-red-600",
-    image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=60&w=800"
   },
   {
     title: "General Medicine",
@@ -26,7 +26,7 @@ const services = [
     longDescription: "Internal medicine is like being a health detective. I look at the big picture—how your sleep, your stress, and your symptoms all connect. Whether it's a seasonal flu or a chronic condition that's been bothering you for months, we'll dig deep to find the root cause and get you back on your feet with a treatment plan that makes sense.",
     icon: Stethoscope,
     color: "bg-emerald-50 text-emerald-600",
-    image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=60&w=800"
   },
   {
     title: "Thyroid Disorders",
@@ -34,7 +34,7 @@ const services = [
     longDescription: "Your thyroid is the thermostat of your body. When it's off, everything feels wrong—your weight, your mood, your energy. I provide precise testing and personalized hormone management to stop the 'brain fog' and help you regain control over your metabolism. It's about more than just numbers on a lab report; it's about how you feel every morning.",
     icon: Shield,
     color: "bg-purple-50 text-purple-600",
-    image: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=60&w=800"
   },
   {
     title: "Preventive Health",
@@ -50,7 +50,7 @@ const services = [
     longDescription: "Office jobs, fast food, and high stress—modern life isn't always kind to our bodies. I specialize in managing 'lifestyle' conditions like high cholesterol and obesity without making you feel judged. We'll create sustainable, realistic changes that fit into your busy Kolkata life, using a combination of medical support and behavioral coaching.",
     icon: Thermometer,
     color: "bg-teal-50 text-teal-600",
-    image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=60&w=800"
   }
 ];
 
@@ -91,7 +91,7 @@ const ServicesPage = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-32 ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
             >
               <div className="lg:w-[50%] lg:shrink-0">

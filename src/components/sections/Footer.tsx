@@ -28,6 +28,7 @@ const BrandColumn = () => (
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
         className="lg:col-span-5 space-y-3"
     >
         {/* Logo & Name */}
@@ -73,7 +74,7 @@ const NavigationColumn = () => (
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ delay: 0.1 }}
+        transition={{ delay: 0.1, duration: 0.5 }}
         className="lg:col-span-3"
     >
         <h4 className="font-display font-bold text-[8px] uppercase tracking-[0.3em] mb-3 text-white/20">
@@ -101,7 +102,7 @@ const ContactColumn = () => (
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ delay: 0.2 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
         className="lg:col-span-4"
     >
         <h4 className="font-display font-bold text-[8px] uppercase tracking-[0.3em] mb-3 text-white/20">

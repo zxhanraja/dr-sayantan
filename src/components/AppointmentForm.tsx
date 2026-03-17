@@ -138,7 +138,7 @@ const AppointmentForm = () => {
                   initial={{ opacity: 0, scale: 0.95, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, y: -20 }}
-                  transition={{ duration: 0.4, ease: 'easeOut' }}
+                  transition={{ duration: 0.3, ease: 'easeOut' }}
                   className="w-full flex flex-col items-center text-center py-10 gap-6"
                 >
                   <motion.div

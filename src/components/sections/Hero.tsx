@@ -20,7 +20,7 @@ const desktopStats = [
 ];
 
 const DOCTOR_IMAGE =
-  'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800';
+  'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=60&w=1200';
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -66,9 +66,9 @@ const MobilePhotoAndStats = () => (
     </div>
 
     <motion.div
-      initial={{ opacity: 0, scale: 0.9, rotate: -3 }}
+      initial={{ opacity: 0, scale: 0.95, rotate: -2 }}
       animate={{ opacity: 1, scale: 1, rotate: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+      transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
       className="relative shrink-0 ml-auto"
     >
       <div className="w-44 h-44 sm:w-52 sm:h-52 md:w-64 md:h-64 rounded-[2.5rem] overflow-hidden border-[6px] border-white shadow-2xl relative z-10">
@@ -157,9 +157,9 @@ const DesktopStats = () => (
 const DoctorPhoto = () => (
   <div className="hidden lg:col-span-5 lg:block order-2">
     <motion.div
-      initial={{ opacity: 0, scale: 0.95, x: 20 }}
+      initial={{ opacity: 0, scale: 0.98, x: 10 }}
       animate={{ opacity: 1, scale: 1, x: 0 }}
-      transition={{ duration: 1.2, ease: 'easeOut' }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
       className="relative"
     >
       <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-[0_48px_96px_-16px_rgba(0,0,0,0.15)] border-[12px] border-white aspect-[4/5] group">
