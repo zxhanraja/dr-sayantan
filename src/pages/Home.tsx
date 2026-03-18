@@ -1,20 +1,13 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import Hero from '@/src/components/Hero';
 import { motion } from 'motion/react';
 import { Activity, Shield, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const Services = lazy(() => import('@/src/components/Services'));
-const AppointmentForm = lazy(() => import('@/src/components/AppointmentForm'));
-const Testimonials = lazy(() => import('@/src/components/Testimonials'));
-const FAQ = lazy(() => import('@/src/components/FAQ'));
-
-// Simple Section Loader
-const SectionLoader = () => (
-  <div className="py-20 flex items-center justify-center opacity-50">
-    <div className="w-8 h-8 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />
-  </div>
-);
+import Services from '@/src/components/Services';
+import AppointmentForm from '@/src/components/AppointmentForm';
+import Testimonials from '@/src/components/Testimonials';
+import FAQ from '@/src/components/FAQ';
 
 const Home = () => {
   return (
@@ -108,17 +101,9 @@ const Home = () => {
         </div>
       </section>
 
-      <Suspense fallback={<SectionLoader />}>
-        <Services />
-      </Suspense>
-
-      <Suspense fallback={<SectionLoader />}>
-        <Testimonials />
-      </Suspense>
-
-      <Suspense fallback={<SectionLoader />}>
-        <FAQ />
-      </Suspense>
+      <Services />
+      <Testimonials />
+      <FAQ />
 
       {/* Location Section */}
       <section className="section-padding bg-white relative overflow-hidden">
@@ -201,9 +186,7 @@ const Home = () => {
         </div>
       </section>
 
-      <Suspense fallback={<SectionLoader />}>
-        <AppointmentForm />
-      </Suspense>
+      <AppointmentForm />
     </main>
   );
 };
