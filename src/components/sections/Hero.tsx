@@ -20,7 +20,7 @@ const desktopStats = [
 ];
 
 const DOCTOR_IMAGE =
-  'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=1200&fm=webp';
+  'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=70&w=800&fm=webp';
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 

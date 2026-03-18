@@ -23,13 +23,14 @@ export const useAssetLoader = () => {
       }
     };
 
-    // Safety timeout: Ensure loading screen disappears after 6 seconds regardless of asset status
+    // Safety timeout: Ensure loading screen disappears after 4 seconds regardless of asset status
     const safetyTimeout = setTimeout(() => {
       if (isLoading) {
+        console.log('useAssetLoader: Safety timeout triggered');
         setProgress(100);
         setIsLoading(false);
       }
-    }, 6000);
+    }, 4000);
 
     // Track window load
     if (document.readyState === 'complete') {
