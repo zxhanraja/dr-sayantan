@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navbar from '@/src/components/Navbar';
 import Footer from '@/src/components/Footer';
 import { AnimatePresence, motion } from 'motion/react';
+import { useAssetLoader } from './hooks/useAssetLoader';
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('@/src/pages/Home'));
@@ -18,23 +19,7 @@ const NotFound = lazy(() => import('@/src/pages/NotFound'));
 const DemoOne = lazy(() => import('@/src/components/ui/demo'));
 
 // Loading Screen Component
-const LoadingScreen = () => {
-  const [progress, setProgress] = React.useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        // Increased speed from 1.5 to 3.5 for a snappier feel
-        return prev + 3.5;
-      });
-    }, 20);
-    return () => clearInterval(interval);
-  }, []);
-
+const LoadingScreen = ({ progress }: { progress: number }) => {
   return (
     <motion.div
       initial={{ opacity: 1 }}
@@ -91,7 +76,7 @@ const LoadingScreen = () => {
             className="absolute top-0 left-0 h-full bg-primary shadow-[0_0_15px_rgba(31,122,140,0.5)]"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
-            transition={{ ease: "linear" }}
+            transition={{ ease: "easeOut", duration: 0.3 }}
           />
         </div>
         <div className="flex justify-between w-72 mt-4">
@@ -132,18 +117,12 @@ const ScrollToTop = () => {
 };
 
 export default function App() {
-  const [loading, setLoading] = React.useState(true);
-
-  useEffect(() => {
-    // Reduced from 1500 to 700 for a much faster entry
-    const timer = setTimeout(() => setLoading(false), 700);
-    return () => clearTimeout(timer);
-  }, []);
+  const { progress, isLoading } = useAssetLoader();
 
   return (
     <Router>
       <AnimatePresence>
-        {loading && <LoadingScreen />}
+        {isLoading && <LoadingScreen progress={progress} />}
       </AnimatePresence>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
@@ -172,3 +151,4 @@ export default function App() {
     </Router>
   );
 }
+
