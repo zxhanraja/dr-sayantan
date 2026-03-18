@@ -30,7 +30,7 @@ const Home = () => {
           >
             <div className="relative z-10 rounded-[3rem] sm:rounded-[5rem] overflow-hidden shadow-[0_48px_96px_-16px_rgba(0,0,0,0.12)] border-[12px] sm:border-[20px] border-white bg-white group">
               <img
-                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=60&w=1000"
+                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=70&w=800&fm=webp"
                 alt="Doctor Consultation"
                 className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700"
                 referrerPolicy="no-referrer"

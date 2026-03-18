@@ -5,8 +5,11 @@ export const useAssetLoader = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const images = Array.from(document.images);
-    const totalAssets = images.length + 1; // +1 for the window load event
+    // Only track images that are NOT lazy-loaded
+    const allImages = Array.from(document.images);
+    const imagesToTrack = allImages.filter(img => img.getAttribute('loading') !== 'lazy');
+    
+    const totalAssets = imagesToTrack.length + 1; // +1 for the window load event
     let loadedAssets = 0;
 
     const incrementProgress = () => {
@@ -14,11 +17,19 @@ export const useAssetLoader = () => {
       const currentProgress = (loadedAssets / totalAssets) * 100;
       setProgress(currentProgress);
       
-      if (loadedAssets === totalAssets) {
+      if (loadedAssets >= totalAssets) {
         // Add a slight delay for a smoother transition to 100%
         setTimeout(() => setIsLoading(false), 500);
       }
     };
+
+    // Safety timeout: Ensure loading screen disappears after 6 seconds regardless of asset status
+    const safetyTimeout = setTimeout(() => {
+      if (isLoading) {
+        setProgress(100);
+        setIsLoading(false);
+      }
+    }, 6000);
 
     // Track window load
     if (document.readyState === 'complete') {
@@ -27,27 +38,27 @@ export const useAssetLoader = () => {
       window.addEventListener('load', incrementProgress, { once: true });
     }
 
-    // Track images
-    if (images.length === 0) {
+    // Track critical images
+    if (imagesToTrack.length === 0) {
       if (document.readyState === 'complete') {
-          // If no images and already loaded, just finish
-          setIsLoading(false);
-          setProgress(100);
+        setProgress(100);
+        setIsLoading(false);
       }
     } else {
-      images.forEach((img) => {
+      imagesToTrack.forEach((img) => {
         if (img.complete) {
           incrementProgress();
         } else {
           img.addEventListener('load', incrementProgress, { once: true });
-          img.addEventListener('error', incrementProgress, { once: true }); // Count errors too to avoid blocking
+          img.addEventListener('error', incrementProgress, { once: true });
         }
       });
     }
 
     return () => {
+      clearTimeout(safetyTimeout);
       window.removeEventListener('load', incrementProgress);
-      images.forEach((img) => {
+      imagesToTrack.forEach((img) => {
         img.removeEventListener('load', incrementProgress);
         img.removeEventListener('error', incrementProgress);
       });
