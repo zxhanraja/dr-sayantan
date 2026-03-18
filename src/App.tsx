@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useAssetLoader } from './hooks/useAssetLoader';
 
 // Lazy load pages for better performance
-import Home from '@/src/pages/Home';
+const Home = lazy(() => import('@/src/pages/Home'));
 const About = lazy(() => import('@/src/pages/About'));
 const Services = lazy(() => import('@/src/pages/Services'));
 const Appointment = lazy(() => import('@/src/pages/Appointment'));

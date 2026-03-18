@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import Hero from '@/src/components/Hero';
-import Services from '@/src/components/Services';
-import AppointmentForm from '@/src/components/AppointmentForm';
-import Testimonials from '@/src/components/Testimonials';
-import FAQ from '@/src/components/FAQ';
 import { motion } from 'motion/react';
-import { Quote, Star, MapPin, Phone, Clock, Users, Activity, History, ArrowRight, Heart, Shield, Stethoscope } from 'lucide-react';
+import { Activity, Shield, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+const Services = lazy(() => import('@/src/components/Services'));
+const AppointmentForm = lazy(() => import('@/src/components/AppointmentForm'));
+const Testimonials = lazy(() => import('@/src/components/Testimonials'));
+const FAQ = lazy(() => import('@/src/components/FAQ'));
+
+// Simple Section Loader
+const SectionLoader = () => (
+  <div className="py-20 flex items-center justify-center opacity-50">
+    <div className="w-8 h-8 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />
+  </div>
+);
 
 const Home = () => {
   return (
     <main className="overflow-hidden">
       <Hero />
-
-
 
       {/* About Section Preview */}
       <section className="section-padding bg-white overflow-hidden relative">
@@ -102,11 +108,17 @@ const Home = () => {
         </div>
       </section>
 
-      <Services />
+      <Suspense fallback={<SectionLoader />}>
+        <Services />
+      </Suspense>
 
-      <Testimonials />
+      <Suspense fallback={<SectionLoader />}>
+        <Testimonials />
+      </Suspense>
 
-      <FAQ />
+      <Suspense fallback={<SectionLoader />}>
+        <FAQ />
+      </Suspense>
 
       {/* Location Section */}
       <section className="section-padding bg-white relative overflow-hidden">
@@ -130,9 +142,9 @@ const Home = () => {
 
               <div className="space-y-6 mb-16">
                 {[
-                  { icon: MapPin, title: "Clinic Address", desc: "Manmohan Park, 41/5 Raja Rammohan Roy Rd, Behala Chowrasta, Kolkata 700008", color: "bg-blue-50 text-blue-600" },
-                  { icon: Phone, title: "Contact Number", desc: "079801 65256", color: "bg-emerald-50 text-emerald-600" },
-                  { icon: Clock, title: "Working Hours", desc: "Mon - Sat: 10:00 AM - 08:00 PM", color: "bg-purple-50 text-purple-600" }
+                  { icon: Activity, title: "Clinic Address", desc: "Manmohan Park, 41/5 Raja Rammohan Roy Rd, Behala Chowrasta, Kolkata 700008", color: "bg-blue-50 text-blue-600" },
+                  { icon: Activity, title: "Contact Number", desc: "079801 65256", color: "bg-emerald-50 text-emerald-600" },
+                  { icon: Activity, title: "Working Hours", desc: "Mon - Sat: 10:00 AM - 08:00 PM", color: "bg-purple-50 text-purple-600" }
                 ].map((item, i) => (
                   <motion.div
                     key={i}
@@ -189,7 +201,9 @@ const Home = () => {
         </div>
       </section>
 
-      <AppointmentForm />
+      <Suspense fallback={<SectionLoader />}>
+        <AppointmentForm />
+      </Suspense>
     </main>
   );
 };

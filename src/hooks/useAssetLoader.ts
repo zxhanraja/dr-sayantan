@@ -5,9 +5,12 @@ export const useAssetLoader = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Only track images that are NOT lazy-loaded
+    // Only track images that are NOT lazy-loaded and are likely critical
     const allImages = Array.from(document.images);
-    const imagesToTrack = allImages.filter(img => img.getAttribute('loading') !== 'lazy');
+    const imagesToTrack = allImages.filter(img => 
+      img.getAttribute('loading') !== 'lazy' && 
+      !img.complete
+    );
     
     const totalAssets = imagesToTrack.length + 1; // +1 for the window load event
     let loadedAssets = 0;
@@ -19,18 +22,18 @@ export const useAssetLoader = () => {
       
       if (loadedAssets >= totalAssets) {
         // Add a slight delay for a smoother transition to 100%
-        setTimeout(() => setIsLoading(false), 500);
+        setTimeout(() => setIsLoading(false), 300);
       }
     };
 
-    // Safety timeout: Ensure loading screen disappears after 4 seconds regardless of asset status
+    // Safety timeout: Ensure loading screen disappears after 2.5 seconds regardless of asset status
+    // On mobile, this is crucial for the "Excellent" Lighthouse score
     const safetyTimeout = setTimeout(() => {
       if (isLoading) {
-        console.log('useAssetLoader: Safety timeout triggered');
         setProgress(100);
         setIsLoading(false);
       }
-    }, 4000);
+    }, 2500);
 
     // Track window load
     if (document.readyState === 'complete') {
@@ -47,12 +50,8 @@ export const useAssetLoader = () => {
       }
     } else {
       imagesToTrack.forEach((img) => {
-        if (img.complete) {
-          incrementProgress();
-        } else {
-          img.addEventListener('load', incrementProgress, { once: true });
-          img.addEventListener('error', incrementProgress, { once: true });
-        }
+        img.addEventListener('load', incrementProgress, { once: true });
+        img.addEventListener('error', incrementProgress, { once: true });
       });
     }
 
